@@ -23,4 +23,3 @@ class Solution:
                         queue.append((word, level+1))
                 new_dict[look_up_word] = []
         return 0
-        
