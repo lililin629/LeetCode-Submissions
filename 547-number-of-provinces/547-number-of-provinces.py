@@ -20,4 +20,3 @@ class Solution:
                             visited[j] = True
         return ans
     
-        
