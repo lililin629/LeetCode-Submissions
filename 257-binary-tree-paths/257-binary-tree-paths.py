@@ -5,6 +5,23 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+# divide and conquer
+    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
+        paths = []
+        # exception
+        if not root:
+            return paths
+        # base case
+        if not root.left and not root.right:
+            return [str(root.val)]
+        # divide and concquer
+        for path in self.binaryTreePaths(root.left):
+            paths.append(str(root.val) + '->' + path)
+        for path in self.binaryTreePaths(root.right):
+            paths.append(str(root.val) + '->' + path)
+        return paths
+
+# Traversal
 #     def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
 #         path, paths = [root], []
 #         self.find_path(root, path, paths)
@@ -25,25 +42,4 @@ class Solution:
 #         path.append(node.right)
 #         self.find_path(node.right, path, paths)
 #         path.pop()
-
-
-# divide and conquer
-    def binaryTreePaths(self, root: Optional[TreeNode]) -> List[str]:
-        paths = []
-        # exception
-        if not root:
-            return paths
-        # base case
-        if not root.left and not root.right:
-            return [str(root.val)]
-        # divide and concquer
-        for path in self.binaryTreePaths(root.left):
-            paths.append(str(root.val) + '->' + path)
-        for path in self.binaryTreePaths(root.right):
-            paths.append(str(root.val) + '->' + path)
-        return paths
-        
-        
-        
-        
         
