@@ -20,7 +20,3 @@ class Solution:
             return True, max(height_right, height_left) + 1
         return False, max(height_right, height_left) + 1
         
-        
-    
-    
-        
