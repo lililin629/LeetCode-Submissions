@@ -27,6 +27,8 @@ class BSTIterator:
     def hasNext(self) -> bool:
         return bool(self.stack)
 
+        
+
 
 # Your BSTIterator object will be instantiated and called as such:
 # obj = BSTIterator(root)
