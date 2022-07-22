@@ -46,4 +46,3 @@ class Solution:
                 new_neighbor = mapping[neighbor]
                 new_node.neighbors.append(new_neighbor)
             
-            
