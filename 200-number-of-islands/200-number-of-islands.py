@@ -37,9 +37,9 @@ class Solution:
             return False
         if (new_x, new_y) in visited:
             return False
-        if grid[new_x][new_y] == '1':
-            return True
-        return False
+        if grid[new_x][new_y] == '0':
+            return False
+        return True
         
                 
                 
