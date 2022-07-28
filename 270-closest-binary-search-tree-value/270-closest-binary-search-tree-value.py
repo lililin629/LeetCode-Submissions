@@ -6,24 +6,36 @@
 #         self.right = right
 class Solution:
     def closestValue(self, root: Optional[TreeNode], target: float) -> int:
-        # write your code here
-        stack = []
-        pred = float('-inf')
-        while stack or root:
-            while root:   # while not leaf -> traverse to leftest leaf
-                stack.append(root)
-                root = root.left
-            root = stack.pop()
-            
-            if pred <= target and target < root.val:
-                return min(pred, root.val, key = lambda x: abs(x-target))
+        # recursion
+        # find upper, lower bounds and return the bound closer to target
+        if not root:
+            return None
+        
+        upper_bound = self.find_upper(root, target)
+        lower_bound = self.find_lower(root, target)
+        
+        if upper_bound is None:
+            return lower_bound
+        
+        if lower_bound is None:
+            return upper_bound
+        
+        return upper_bound if abs(upper_bound - target) < abs(lower_bound - target) else lower_bound
+    
 
-            pred = root.val
-            root = root.right
-        return pred
-        
-        
-        
-       
-       
-        
+    def find_upper(self, root: TreeNode, target: float) -> int:
+        if not root:
+            return None
+        if root.val <= target:
+            return self.find_upper(root.right, target)
+        closer_up = self.find_upper(root.left, target)
+        return closer_up if closer_up is not None else root.val
+    
+    
+    def find_lower(self, root: TreeNode, target: float) -> int:
+        if not root:
+            return None
+        if root.val > target:
+            return self.find_lower(root.left, target)
+        closer_low = self.find_lower(root.right, target)
+        return closer_low if closer_low is not None else root.val
