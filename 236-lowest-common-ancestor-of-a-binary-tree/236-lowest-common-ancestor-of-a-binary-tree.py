@@ -21,4 +21,3 @@ class Solution:
         if right:
             return right
         return None
-        
