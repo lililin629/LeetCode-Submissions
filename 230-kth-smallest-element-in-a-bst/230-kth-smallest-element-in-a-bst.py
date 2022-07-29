@@ -4,6 +4,8 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# sol1: in-order traverse k-1 elements
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         # queue
@@ -22,4 +24,8 @@ class Solution:
         while node is not None:
             q.append(node)
             node = node.left
+
+# sol2: a optimized solution similar to quick select
+# class Solution:
+#     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         
