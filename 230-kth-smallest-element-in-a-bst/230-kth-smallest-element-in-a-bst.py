@@ -22,6 +22,4 @@ class Solution:
         while node is not None:
             q.append(node)
             node = node.left
-            
-                
         
