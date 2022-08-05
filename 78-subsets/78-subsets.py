@@ -8,24 +8,16 @@ class Solution:
         
     
     def dfs(self, nums, index, subset, subsets):
-        subsets.append(list(subset))
+        if index == len(nums):
+            subsets.append(list(subset))
+            return
         
-        for i in range(index, len(nums)):
-            subset.append(nums[i])
-            self.dfs(nums, i+1, subset, subsets)
-            subset.pop()
-            
-        
-#     def dfs(self, nums, index, subset, subsets):
-#         if index == len(nums):
-#             subsets.append(list(subset))
-#             return
-        
-#         # chosen
-#         subset.append(nums[index])
-#         self.dfs(nums, index+1, subset, subsets)
-#         # not chosen
-#         subset.pop()
-#         self.dfs(nums, index+1, subset, subsets)
-        
+        # 選
+        subset.append(nums[index])
+        self.dfs(nums, index+1, subset, subsets)
+        # 不選
+        subset.pop()
+        self.dfs(nums, index+1, subset, subsets)
+
+
         
