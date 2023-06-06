@@ -20,6 +20,7 @@ class Solution(object):
         for student,scores in d.items():
             avg = sum(scores)//5
             result.append([student,avg])
+        result = sorted(result)
         return result
             
             
