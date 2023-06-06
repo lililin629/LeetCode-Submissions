@@ -15,9 +15,11 @@ class Solution(object):
         
         count = 0
         for s1 in d12:
-            for s2 in d34:
-                if (s1 + s2) == 0:
-                    count += d12[s1]*d34[s2]
+            if -s1 in d34:
+                count += d12[s1]*d34[-s1]
+            # for s2 in d34:
+            #     if (s1 + s2) == 0:
+            #         count += d12[s1]*d34[s2]
         return count
         
         
@@ -27,10 +29,7 @@ class Solution(object):
         for i in l1:
             for j in l2:
                 sum12 = i+j
-                if sum12 not in d:
-                    d[sum12] = 1
-                else:
-                    d[sum12] += 1
+                d[sum12] = d.get(sum12, 0)+1
         return d
         
         
