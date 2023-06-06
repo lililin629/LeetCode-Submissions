@@ -7,12 +7,14 @@ class Solution(object):
         d = {}  #{id:heap}
         
         for item in items:
-            if item[0] not in d:
-                d[item[0]] = []
-                heapq.heapify(d[item[0]] )
-            heapq.heappush(d[item[0]], item[1])
-            if len(d[item[0]]) > 5:
-                heapq.heappop(d[item[0]])
+            s_id = item[0]
+            score = item[1]
+            if s_id not in d:
+                d[s_id] = []
+                heapq.heapify(d[s_id] )
+            heapq.heappush(d[s_id], score)
+            if len(d[s_id]) > 5:
+                heapq.heappop(d[s_id])
         
         result = []
         for student,scores in d.items():
