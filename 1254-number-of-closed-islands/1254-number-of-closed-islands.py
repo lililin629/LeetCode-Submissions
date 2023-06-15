@@ -6,11 +6,8 @@ class Solution:
             for j in range(len(grid[0])):
                 ele = grid[i][j]
                 if ele == 0:
-                    print(i, j)
                     c = self.bfs(i, j, grid)
-                    count += c
-        
-        print(grid)            
+                    count += c          
         return count
     
     def bfs(self, i, j, grid):
