@@ -11,7 +11,7 @@ class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         if node is None:
             return None
-        if node.neighbors is None or node.neighbors == []:
+        if node.neighbors == []:
             return Node(node.val, None) 
         
         # created placeholder map val->new_nodes
