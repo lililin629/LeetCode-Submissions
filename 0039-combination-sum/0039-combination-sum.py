@@ -12,9 +12,11 @@ class Solution:
                 return
             for i in range(index, len(candidates)):
                 subset.append(candidates[i])
-               
-                self.dfs(candidates, total + candidates[i], target, i, subset, subsets)
+                total += candidates[i]
+                self.dfs(candidates, total, target, i, subset, subsets)
+                total -= candidates[i]
                 subset.pop()
+               
                 
 
             
