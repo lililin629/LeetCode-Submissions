@@ -13,19 +13,19 @@ class Solution:
             if not root:
                 return 
             else:
-                if not root.left and not root.right:
-                    ls1.append(root.val)
                 dfs1(root.left)
                 dfs1(root.right)
+                if not root.left and not root.right:
+                    ls1.append(root.val)
                 
         def dfs2(root):
             if not root:
                 return 
             else:
+                dfs2(root.left)
+                dfs2(root.right)
                 if not root.left and not root.right:
                     ls2.append(root.val)
-                dfs2(root.left)
-                dfs2(root.right)       
             
             
         dfs1(root1)
