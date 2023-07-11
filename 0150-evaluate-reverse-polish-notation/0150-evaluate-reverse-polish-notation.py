@@ -12,15 +12,14 @@ class Solution:
                 o2 = stack.pop()
                 if t == '+':
                     r = o2 + o1
-                    stack.append(r)
                 if t == '-':
                     r = o2 - o1
-                    stack.append(r)
                 if t == '*':
                     r = o2 * o1
-                    stack.append(r) 
                 if t == '/':
                     r = int(o2 / o1)
-                    stack.append(r) 
+                stack.append(r) 
         return stack[0]
+    
+  
         
