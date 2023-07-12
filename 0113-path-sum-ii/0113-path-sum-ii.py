@@ -17,10 +17,10 @@ class Solution:
             if not root.left and not root.right:
                 if root.val == targetSum:
                     ans.append(list(ls))
-               
 
             helper(root.left, targetSum - root.val, ls) 
             helper(root.right, targetSum - root.val, ls)
+            
             ls.pop()
             
             return ans
