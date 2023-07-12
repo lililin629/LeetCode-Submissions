@@ -44,5 +44,10 @@ class Solution:
             p1 += 1
             p2 -= 1
         return True
+    
+    
+    ##########NOTE#############
+    #leaf.left = None
+    #None.left 會報錯
                 
         
