@@ -1,5 +1,6 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
+        
         ans = []
         
         def is_valid(s):
@@ -19,7 +20,6 @@ class Solution:
             return False
                 
             
-            
         def helper(s):
             
             if len(s) == 2*n:
@@ -32,8 +32,10 @@ class Solution:
         
         helper('')    
         return ans
+
     
     
+
         
             
         
