@@ -15,13 +15,23 @@ class Solution:
 #         return ans
 
 ####################################dfs2#########################################
-        if n == 1:
-            return ['()']
-        ans = set()
-        for p in self.generateParenthesis(n-1):
-            for i in range(len(p)):
-                ans.add(p[:i]+'()'+p[i:])
-        return list(ans)
+        def dfs(n):
+            ans = set()
+            if n == 1:
+                return ['()']
+            prev = dfs(n-1)
+            for p in prev:
+                for i in range(len(p)):
+                    ans.add(p[:i]+'()'+p[i:])
+            return list(ans)
+        return dfs(n)   
+        # if n == 1:
+        #     return ['()']
+        # ans = set()
+        # for p in self.generateParenthesis(n-1):
+        #     for i in range(len(p)):
+        #         ans.add(p[:i]+'()'+p[i:])
+        # return list(ans)
 ###################################brute force###################################
 #         ans = []
         
