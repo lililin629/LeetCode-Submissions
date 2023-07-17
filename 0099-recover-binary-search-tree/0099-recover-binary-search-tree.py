@@ -26,6 +26,7 @@ class Solution:
             prev = root
             find_nodes(root.right)
             return high, low
+        
         h, l = find_nodes(root)
         h.val, l.val = l.val, h.val
            
