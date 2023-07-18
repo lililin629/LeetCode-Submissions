@@ -8,45 +8,28 @@ class Solution:
     def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root:
             return []
-        dic = {root: 0} # {node: node.x}
-        xdic = {} #{x:[node.val, ...]}
-       
-        queue = deque([root])
-           
-        while queue:
-            cur_level = len(queue)
-            for i in range(cur_level):
-                cur = queue.popleft()
-                cur_x = dic[cur]
-                if cur_x not in xdic:
-                    xdic[cur_x] = [cur.val]
-                else:
-                    xdic[cur_x].append(cur.val)
-                    
-                if cur.left:
-                    queue.append(cur.left)
-                    dic[cur.left] = cur_x - 1
-                    
-                if cur.right:
-                    queue.append(cur.right)
-                    dic[cur.right] = cur_x + 1
-        sorted_dict = dict(sorted(xdic.items()))
-        ans = []
-        for x in sorted_dict:
-            ans.append(sorted_dict[x])
+        dic = {} #{-1: [9], 0:[3, 15],...}
+        q = deque([(root, 0)])
+        
+        while q:
+            cur, col = q.popleft()
+            if col not in dic:
+                dic[col] = [cur.val]
+            else:
+                dic[col].append(cur.val)
+                
+            if cur.left:
+                q.append((cur.left, col-1))
+            if cur.right:
+                q.append((cur.right, col+1))
+        ans = []    
+        dic = dict(sorted(dic.items()))
+        for key in dic:
+            ans.append(dic[key])
         return ans
             
-            
-                    
-
-        
-            
                 
                 
-            
                 
-         
-            
-        
         
         
