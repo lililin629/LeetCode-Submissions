@@ -13,7 +13,7 @@ class Solution:
                 cur_num = cur_num*10 + root.val
                 if not root.left and not root.right:
                     self.total += cur_num
-                   
+                    # return
                 helper(root.left, cur_num)
                 helper(root.right, cur_num)
                 
