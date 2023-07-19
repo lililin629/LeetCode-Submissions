@@ -2,7 +2,6 @@ class Solution:
     def closestMeetingNode(self, edges: List[int], node1: int, node2: int) -> int:
         # bfs(node1, node2)
         
-        
         q1 = deque([node1])
         q2 = deque([node2])
         v1 = {}
@@ -34,10 +33,9 @@ class Solution:
                         ans[max_dis].append(cur2)
                 if edges[cur2] != -1 and edges[cur2] not in v2:
                     q2.append(edges[cur2])
+                    
         if ans:
-           
             ans = dict(sorted(ans.items()))
-            
             for key in ans:
                 ans[key].sort()
                 return ans[key][0]
