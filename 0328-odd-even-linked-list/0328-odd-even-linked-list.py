@@ -22,10 +22,8 @@ class Solution:
                 el = cur
                 odd = True
             cur = cur.next
-        if odd:
-            ol.next = None
-        else:
-            el.next = None
+       
+        el.next = None
 
         ol.next = temp
         print(head)
