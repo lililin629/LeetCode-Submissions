@@ -6,28 +6,26 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        # (left, root, right) traversal -> ls1
-        # ls2 = sorted(ls1)
-        # if ls1 == ls2: return True
-        
-        ls1 = []
-        def dfs(root):
-            if not root:
-                return
-            else:
-                dfs(root.left)
-                ls1.append(root.val)
-                dfs(root.right)
-        
-        dfs(root)
-        ls2 = sorted(ls1)
-        s1 = set(ls1)
-        
-        
-        if ls1 == ls2 and len(s1) == len(ls1):
+        if not root:
             return True
-        else:
+        print(self.isSmaller(root.left, root.val))
+        print(self.isBigger(root.right, root.val))
+        
+        return self.isSmaller(root.left, root.val) and self.isBigger(root.right, root.val) and self.isValidBST(root.left) and self.isValidBST(root.right)
+    
+    def isSmaller(self, rootS, B):
+        if not rootS:
+            return True
+        if rootS.val >= B:
             return False
-       
+        return self.isSmaller(rootS.left, B) and self.isSmaller(rootS.right, B)
+        
+    def isBigger(self, rootB, S):
+        if not rootB:
+            return True
+        if rootB.val <= S:
+            return False
+        return self.isBigger(rootB.left, S) and self.isBigger(rootB.right, S)
+        
         
         
