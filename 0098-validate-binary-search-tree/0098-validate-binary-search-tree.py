@@ -6,26 +6,42 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        if not root:
-            return True
-        print(self.isSmaller(root.left, root.val))
-        print(self.isBigger(root.right, root.val))
+        def isValidBSTInRange(root, lower, upper):
+            if not root:
+                return True
+
+            if lower is not None and root.val <= lower:
+                return False
+            if upper is not None and root.val >= upper:
+                return False
+
+            left_valid = isValidBSTInRange(root.left, lower, root.val)
+            right_valid = isValidBSTInRange(root.right, root.val, upper)
+
+            return left_valid and right_valid
+
+        # Start with the full range for the root node
+        return isValidBSTInRange(root, None, None)
+#         if not root:
+#             return True
+#         print(self.isSmaller(root.left, root.val))
+#         print(self.isBigger(root.right, root.val))
         
-        return self.isSmaller(root.left, root.val) and self.isBigger(root.right, root.val) and self.isValidBST(root.left) and self.isValidBST(root.right)
+#         return self.isSmaller(root.left, root.val) and self.isBigger(root.right, root.val) and self.isValidBST(root.left) and self.isValidBST(root.right)
     
-    def isSmaller(self, rootS, B):
-        if not rootS:
-            return True
-        if rootS.val >= B:
-            return False
-        return self.isSmaller(rootS.left, B) and self.isSmaller(rootS.right, B)
+#     def isSmaller(self, rootS, B):
+#         if not rootS:
+#             return True
+#         if rootS.val >= B:
+#             return False
+#         return self.isSmaller(rootS.left, B) and self.isSmaller(rootS.right, B)
         
-    def isBigger(self, rootB, S):
-        if not rootB:
-            return True
-        if rootB.val <= S:
-            return False
-        return self.isBigger(rootB.left, S) and self.isBigger(rootB.right, S)
+#     def isBigger(self, rootB, S):
+#         if not rootB:
+#             return True
+#         if rootB.val <= S:
+#             return False
+#         return self.isBigger(rootB.left, S) and self.isBigger(rootB.right, S)
         
         
         
