@@ -9,11 +9,7 @@ class Solution:
     def recoverTree(self, root: Optional[TreeNode]) -> None:
         """
         Do not return anything, modify root in-place instead.
-        """
-       
-            
-  
-        
+        """ 
         prev = TreeNode(float('-inf'))
         high = None
         low = None
@@ -33,6 +29,8 @@ class Solution:
         
         h, l = find_nodes(root)
         h.val, l.val = l.val, h.val
+
+###############SOL2#######################################
            
 # class Solution:
 #     def recoverTree(self, root: Optional[TreeNode]) -> None:
