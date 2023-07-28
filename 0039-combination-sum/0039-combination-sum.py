@@ -1,24 +1,22 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        subsets = []
-        self.dfs(candidates, 0, target, 0, [],subsets)
-        return subsets
-    
-    def dfs(self, candidates, total, target, index, subset, subsets):
-            if total == target:
-                subsets.append(list(subset))
-                return
-            elif total > target:
-                return
-            for i in range(index, len(candidates)):
-                subset.append(candidates[i])
-                total += candidates[i]
-                self.dfs(candidates, total, target, i, subset, subsets)
-                total -= candidates[i]
-                subset.pop()
-               
-                
-
-            
-
         
+        ans = []
+        def dfs(cur, target):
+            if target == 0:
+                ls = sorted(cur)
+                if ls not in ans:
+                    ans.append(ls)
+                return
+            if target < 0:
+                return
+            
+            for c in candidates:
+                cur.append(c)
+                dfs(cur, target-c)
+                cur.remove(c)
+        
+        dfs([], target)
+        return ans
+                
+                
