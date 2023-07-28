@@ -22,7 +22,6 @@ class Solution:
         
         
         #initialize
-        good = 0
         maxv = float('-inf')
         return dfs(root, maxv)
         
