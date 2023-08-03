@@ -27,11 +27,7 @@ class Solution:
         return dummy.next
                 
         
-        # if list1.val <= list2.val:
-        #     self.mer(list1, list2)
-        # else self.mer(list2, list1)
-        
-        
+       
         
         
         
