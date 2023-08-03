@@ -10,15 +10,25 @@ class Solution:
             return False
         
         cur = head
-        s = set()
         
         while cur:
-            if cur in s:
+            if cur.val == 10**6:
                 return True
-            else:
-                s.add(cur)
+            
+            cur.val = 10**6
             cur = cur.next
-        return False
+            
+            
+            
+#         s = set()
+        
+#         while cur:
+#             if cur in s:
+#                 return True
+#             else:
+#                 s.add(cur)
+#             cur = cur.next
+#         return False
         
         
         
