@@ -18,9 +18,11 @@ class Solution:
             for j in [0, n-1]:
                 if board[i][j] == 'O':
                     start.append((i, j))
+                    
+        # change all the islands connected to borderr to '1'
+        self.bfs(start, m, n, board) 
         
-        self.bfs(start, m, n, board) # '1'
-
+        # change remaining 'O' to 'X' and change '1 back to 'O
         for i in range(m):
             for j in range(n):
                 if board[i][j] == 'O':
