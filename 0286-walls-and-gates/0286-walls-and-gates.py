@@ -3,43 +3,36 @@ class Solution:
         """
         Do not return anything, modify rooms in-place instead.
         """
-        for i in range(len(rooms)):
-            for j in range(len(rooms[i])):
+        m = len(rooms)
+        n = len(rooms[0])
+        # find all gates
+        gates = []
+        for i in range(m):
+            for j in range(n):
                 if rooms[i][j] == 0:
-                    door = (i, j)
-                    self.bfs(door, rooms)
-
-    def bfs(self, door, rooms):
-        queue = deque([door])
-        visited = set()
-        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
-        count = 0
-
-        while queue:
-            curr_level_cnt = len(queue)
-            count += 1
-            for i in range(curr_level_cnt):
-                cur_x, cur_y = queue.popleft()
-                for offset_x, offset_y in directions:
-                    next_x, next_y = cur_x + offset_x, cur_y + offset_y
-                    if self.valid((next_x, next_y), rooms):
-                        if (next_x, next_y) not in visited:
-                            rooms[next_x][next_y] = min(count, rooms[next_x][next_y])
-                            queue.append((next_x, next_y))
-                            visited.add((next_x, next_y))
-           
-    
-    
-    def valid(self, next, rooms):
-        # if next_x, next_y is within limit
-        m = len(rooms)-1
-        n = len(rooms[0])-1
-        if next[0] < 0 or next[0]> m:
-            return False
-        if next[1] < 0 or next[1]> n:
-            return False
-        # if next_x, next_y is space
-        if rooms[next[0]][next[1]] == -1 or rooms[next[0]][next[1]] == 0:
-            return False
+                    gates.append((i, j))
+                    
+        # bfs from gates
+        q = deque(gates)
+        dirs = [(1, 0),(-1, 0),(0, 1),(0, -1)]
+        steps = 0
+        while q:
+            l = len(q)
+            steps += 1
+            for _ in range(l):
+                x, y = q.popleft()
+                for dx, dy in dirs:
+                    nx, ny = x + dx, y + dy
+                    if self.valid(nx, ny, m, n, rooms):  # not wall, in boundaries
+                        rooms[nx][ny] = min(steps, rooms[nx][ny])
+                        q.append((nx, ny))
         
-        return True
+    def valid(self, x, y, m, n, rooms):
+        if x >= 0 and y >= 0 and x < m and y < n:
+            if rooms[x][y] == 2147483647:
+                return True
+        return False
+
+            
+            
+        
