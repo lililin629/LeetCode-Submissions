@@ -1,22 +1,33 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        dic = {}
+        d = defaultdict(int)
         for num in nums:
-            if num in dic:
-                dic[num] += 1
-            else:
-                dic[num] = 1
-        ls = []
-        for key in dic:
-            ls.append((dic[key], key))
-        ls.sort(reverse=True)
+            d[num] += 1
+        d2 = defaultdict(list)
+        
+        s = set()
+        for num, fre in d.items():
+            s.add(fre)
+            d2[fre].append(num)
+        
+        lst = list(s)
+        lst.sort(reverse = True)
+        
         
         ans = []
-        for i in range(k):
-            ans.append(ls[i][1])
+        for i in range(len(lst)):
+            key = lst[i]
+            for num in d2[key]:
+                ans.append(num)
+                k -= 1
+            if k == 0:
+                break
         return ans
             
-            
-            
+        
+        
+        
+        
+        
             
         
