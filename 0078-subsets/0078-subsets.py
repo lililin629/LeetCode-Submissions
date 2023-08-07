@@ -1,14 +1,21 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        n = len(nums)
-        output = [[]]
+        k = len(nums)-1
+        return self.dfs(k, nums)
+    
+    
+    def dfs(self, k, nums):
+        if k < 0:
+            return [[]]
+        pre = self.dfs(k-1, nums)
+        ans = []
+        for ls in pre:
+            ans.append(ls+[nums[k]])
+        return pre+ans
         
-        for num in nums:
-            output += [curr + [num] for curr in output]
         
-        return output
+       
 #         self.ans = []
-        
 #         for l in range(len(nums)+1):
 #             self.dfs(l, 0, nums, [])
 #         return self.ans
