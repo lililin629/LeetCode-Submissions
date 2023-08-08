@@ -3,10 +3,12 @@ class Solution:
         n = len(edges) + 1
         d = defaultdict(list)
         
+        #build graph
         for edge in edges:
             d[edge[0]].append(edge[1])
             d[edge[1]].append(edge[0])
-           
+        
+        # global
         self.diameter = 0
         
         # it's an undirected connected component, starting from anywhere is the same
