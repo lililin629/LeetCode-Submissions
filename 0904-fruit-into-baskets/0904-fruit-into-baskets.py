@@ -10,11 +10,11 @@ class Solution:
         
         while r < len(fruits):
             
-            if len(d) <= 2:
-                r += 1
-                if r < len(fruits):
-                    d[fruits[r]] += 1
-                    count += 1
+            
+            r += 1
+            if r < len(fruits):
+                d[fruits[r]] += 1
+                count += 1
                    
             if len(d) > 2:
                 d[fruits[l]] -= 1
