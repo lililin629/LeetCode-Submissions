@@ -1,54 +1,48 @@
 class Solution:
     def treeDiameter(self, edges: List[List[int]]) -> int:
-        n = len(edges) + 1
-        d = defaultdict(list)
+        # build graph
+        self.g = defaultdict(list)
+        for [u, v] in edges:
+            self.g[u].append(v)
+            self.g[v].append(u)
+            
+       
+        # bfs from any node find the first peripheral node1
+        self.dist = 0
+        self. visited = set()
+        node1 = self.bfs(0)
         
-        #build graph
-        for edge in edges:
-            d[edge[0]].append(edge[1])
-            d[edge[1]].append(edge[0])
-        
-        # global
-        self.diameter = 0
-        
-        # it's an undirected connected component, starting from anywhere is the same
-        root = 0
-        visited = set()
-        
-        # get the diameter of each node
-        self.dfs(root, d, visited)
-        return self.diameter
+        self.dist = -1
+        self. visited = set()
+        node2 = self.bfs(node1)
     
+        return self.dist
     
-    def dfs(self, root, d, visited):
-        long1, long2 = 0, 0
-        visited.add(root)
-        if not d[root]:
-            return 0
-        
-        for node in d[root]:
-            if node not in visited:
-                cur_dia = self.dfs(node, d, visited)+1
-                if cur_dia > long1:
-                    long2 = long1
-                    long1 = cur_dia
-                    continue
-                if cur_dia > long2:
-                    long2 = cur_dia
-        self.diameter = max(self.diameter, long1+long2)
-        return long1
-        
-        
-            
-            
-            
+    def bfs(self, node):
+        last_node = None
+        q = deque([node])
+        while q:
+            self.dist += 1
+            l = len(q)
+            for i in range(l):
+                cur = q.popleft()
+                last_node = cur
+                self.visited.add(cur)
+                for c in self.g[cur]:
+                    if c not in self.visited:
+                        q.append(c)
+        return last_node
             
         
         
+        # bfs from node1 to find the second node
         
         
         
-            
-            
+        # for each child, calculate the longest distance to leaf and treeDiameter
+        # record top 2 dist1, dist2, top treeDiameter
+        # return max(dist1 + dist2, dia1)
+        
+        
         
         
