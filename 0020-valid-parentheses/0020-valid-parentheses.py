@@ -1,32 +1,35 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        # {[()]}
-        # {(}
-        
-        def is_a_pair(p1, p2):
-            if p1 == '(':
-                if p2 == ')':
-                    return True
-            if p1 == '{':
-                if p2 == '}':
-                    return True
-            if p1 == '[':
-                if p2 == ']':
-                    return True
-            return False
+        self.st = []
+        # FILO
+        for ch in s:
+            if ch == '(' or ch == '{' or ch == '[':
+                self.st.append(ch)
+            if ch == ')':
+                if self.check(ch, '('):
+                    continue
+                return False
+            if ch == ']':
+                if self.check(ch, '['):
+                    continue
+                return False
+            if ch == '}':
+                if self.check(ch, '{'):
+                    continue
+                return False
                 
-        
-        stack = []
-        
-        for p in s:
-            if stack and is_a_pair(stack[-1], p):
-                    stack.pop(-1)
-            else:
-                stack.append(p)
-        if not stack:
+            
+        if len(self.st) != 0:
+            return False
+        return True
+    
+    def check(self, ch, lp):
+        if self.st and self.st[-1] == lp:
+            self.st.pop()
             return True
         return False
+        
+            
                 
-       
             
         
