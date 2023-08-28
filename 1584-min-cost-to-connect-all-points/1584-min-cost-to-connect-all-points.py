@@ -3,9 +3,10 @@ class Solution:
         n = len(points)
         dist = [float('inf')]*n
         dist[0] = 0
+        
         linked = set()
        
-        while len(linked) < n:
+        while len(linked) < n+1:
             mind = float('inf')
             cur = -1
             for i, d in enumerate(dist):
