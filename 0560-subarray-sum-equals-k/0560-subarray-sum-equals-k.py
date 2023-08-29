@@ -9,7 +9,6 @@ class Solution:
             prefix_sum += num
             if (prefix_sum - k) in d:
                 ans += d[prefix_sum - k]
-                
             d[prefix_sum] += 1
        
         return ans
