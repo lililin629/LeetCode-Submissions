@@ -8,15 +8,12 @@ class Solution:
         l = -1
         
         for i in range(len(nums)):
-            # print(d)
+           
             prefix_sum += nums[i]
             d[i] = prefix_sum
             while prefix_sum - d[l] >= target:
                 min_len = min(min_len, i-l)
                 l += 1
-            
-            # ps2 - ps1 >= target
-            # ps2 - target >= ps1
           
         if min_len > len(nums):
             min_len = 0
