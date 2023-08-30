@@ -17,6 +17,7 @@ class Solution:
         for i in range(len(nums)-1, -1, -1):
             prefix2 *= nums[i]
             d_back[i] = prefix2
+            
         for i in range(len(nums)):
             ans[i] = d_front[i-1]*d_back[i+1]
         
