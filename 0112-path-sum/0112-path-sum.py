@@ -13,7 +13,6 @@ class Solution:
             return
         cur_sum += root.val
         if not root.left and not root.right:
-            print(cur_sum)
             if cur_sum == targetSum:
                 return True
             
