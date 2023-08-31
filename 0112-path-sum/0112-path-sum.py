@@ -11,11 +11,12 @@ class Solution:
     def dfs(self, root, targetSum, cur_sum) -> bool:
         if not root:
             return
+        
         cur_sum += root.val
+        
         if not root.left and not root.right:
             if cur_sum == targetSum:
                 return True
-            
         
         if self.dfs(root.left, targetSum, cur_sum):
             return True
