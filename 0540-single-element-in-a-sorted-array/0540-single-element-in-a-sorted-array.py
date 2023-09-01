@@ -21,7 +21,7 @@ class Solution:
             if mid%2 == 0:
                 end = mid-1
             else:
-                start = mid +1
+                start = mid+1
         else:
             if mid%2 == 0:
                 start = mid+1
