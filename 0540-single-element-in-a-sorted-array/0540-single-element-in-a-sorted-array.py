@@ -1,37 +1,33 @@
 class Solution:
     def singleNonDuplicate(self, nums: List[int]) -> int:
-        b = 0
-        e = len(nums)-1
-        while b < e:
-            m = (b+e)//2
-            if nums[m] == nums[m-1]:
-                if (m-1-b) % 2 == 0:
-                    b = m + 1
-                else:
-                    e = m - 2
-            elif nums[m] == nums[m+1]:
-                if (m-b) % 2 == 0:
-                    b = m + 2
-                else:
-                    e = m - 1
+        if len(nums) == 1:
+            return nums[0]
+        
+        start = 0
+        end = len(nums) - 1
+        return self.rec(nums, start, end)
+    
+    def rec(self, nums, start, end):
+        if start == end:
+            return nums[start]
+        
+        mid = (start + end)//2
+        left = nums[mid-1]
+        ele = nums[mid]
+        right = nums[mid+1]
+        if left != ele and right != ele:
+            return ele
+        elif left == ele:
+            if mid%2 == 0:
+                end = mid-1
             else:
-                return nums[m]
-        return nums[b]
+                start = mid +1
+        else:
+            if mid%2 == 0:
+                start = mid+1
+            else:
+                end = mid-1
+        return self.rec(nums, start, end)
+
+
             
-        
-        
-####################################Brute Force######################################
-#         if len(nums) == 1:
-#             return nums[0]
-#         else:
-#             f = 0
-#             s = 1
-#             while s < len(nums):
-#                 if nums[f] == nums[s]:
-#                     f += 2
-#                     s += 2
-#                 else:
-#                     return nums[f]
-#             return nums[f]
-                
-        
