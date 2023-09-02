@@ -34,13 +34,9 @@ class Solution:
        
         for [x, y] in edges:
             dsu.union(x, y)
-#             print(dsu.par[x])
-#             print(dsu.par[y])
-            
         
         components = []
         for i in range(n):
-            # print(dsu.par[i])
             if dsu.par[i] < 0:
                 components.append(-dsu.par[i])
         ans = 0
