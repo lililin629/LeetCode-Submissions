@@ -1,6 +1,6 @@
 class DSU:
     def __init__(self):
-        self.par = [-1]*1001
+        self.par = [-1]*201
     def find(self, x):
         if self.par[x] > 0:
             self.par[x] = self.find(self.par[x])
