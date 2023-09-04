@@ -9,24 +9,19 @@ class Solution:
             if ch == ')':
                 
                 while st[-1] is not '(':
-                    # print(st)
                     temp = st.pop() + temp
-                    # print('temp')
-                    # print(temp)
+                    
                 st.pop() # pop'('
                 calculated = self.calc(temp)
                 temp = ''
-                # print('calc')
-                # print(calculated)
+                
                 if i == len(s)-1 and not st:
                     return calculated
                 else:
                     num_str = str(calculated)
-                    # print('numstr')
-                    # print(num_str)
                     for c in num_str:
                         st.append(c)
-                    # print(st)
+                    
             elif ch == ' ':
                 continue
             else:
@@ -35,11 +30,11 @@ class Solution:
         if st:
             while st:
                 temp = st.pop() + temp
-            # print(temp)
+            
             return self.calc(temp)
     
     def calc(self, t):
-        # print(t)
+        
         t += '*'
         ans = 0
         if t[0].isnumeric():
@@ -63,8 +58,7 @@ class Solution:
                         ans -= num
                     if sign == '+' or sign == '--':
                         ans += num
-                # print(sign)
-                # print(num)
+                
                 if ch == '-' or ch =='+':
                     sign_st.append(ch)
                 num_str = ''
