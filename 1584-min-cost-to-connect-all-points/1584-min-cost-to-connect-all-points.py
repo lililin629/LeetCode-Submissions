@@ -9,7 +9,7 @@ class Solution:
             heap.append((d, i))
 
         linked = set()
-        total = 0
+        # total = 0
         
        
         while heap:
@@ -17,7 +17,7 @@ class Solution:
             cur_dist, cur = heapq.heappop(heap)
             if cur not in linked:
                 linked.add(cur)
-                total += cur_dist
+                # total += cur_dist
                 # print(f"{cur_dist}, {cur}")
                 # print(linked)
 
@@ -27,7 +27,7 @@ class Solution:
                             dist[i] = self.calc_dist(cur, i, points)
                             heapq.heappush(heap, (dist[i], i))
                         
-        return total
+        return sum(dist)
     
     def calc_dist(self, start, end, points):
         [sx, sy] = points[start]
