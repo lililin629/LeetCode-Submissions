@@ -8,23 +8,26 @@ class Solution:
         for i, d in enumerate(dist):
             heap.append((d, i))
 
-        linked = set([0])
+        linked = set()
+        total = 0
         
        
         while heap:
             # print(heap)
             cur_dist, cur = heapq.heappop(heap)
-            # print(f"{cur}, {cur_dist}")
-            
-            linked.add(cur)
+            if cur not in linked:
+                linked.add(cur)
+                total += cur_dist
+                # print(f"{cur_dist}, {cur}")
+                # print(linked)
 
-            for i in range(n):
-                if i not in linked:
-                    if self.calc_dist(cur, i, points) < dist[i]:
-                        dist[i] = self.calc_dist(cur, i, points)
-                        heapq.heappush(heap, (dist[i], i))
+                for i in range(n):
+                    if i not in linked:
+                        if self.calc_dist(cur, i, points) < dist[i]:
+                            dist[i] = self.calc_dist(cur, i, points)
+                            heapq.heappush(heap, (dist[i], i))
                         
-        return sum(dist)
+        return total
     
     def calc_dist(self, start, end, points):
         [sx, sy] = points[start]
