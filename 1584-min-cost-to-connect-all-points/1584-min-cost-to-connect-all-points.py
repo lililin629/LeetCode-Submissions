@@ -4,22 +4,17 @@ class Solution:
         
         dist = [float('inf')]*n
         dist[0] = 0
-        heap = []
-        for i, d in enumerate(dist):
-            heap.append((d, i))
+        heap = [(0, 0)]
+        # for i, d in enumerate(dist):
+        #     heap.append((d, i))
 
         linked = set()
-        # total = 0
         
        
         while heap:
-            # print(heap)
             cur_dist, cur = heapq.heappop(heap)
             if cur not in linked:
                 linked.add(cur)
-                # total += cur_dist
-                # print(f"{cur_dist}, {cur}")
-                # print(linked)
 
                 for i in range(n):
                     if i not in linked:
