@@ -9,7 +9,7 @@ class Solution:
         return max(self.dfs(root))
         
     
-    
+    @cache
     def dfs(self, root):
         if not root:
             return (0, 0)
