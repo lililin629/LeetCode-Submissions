@@ -9,9 +9,8 @@ class Solution:
                 r += 1
             else:
                 l += 1
-                nums[l], nums[r] = nums[r], nums[l]
+                nums[l] = nums[r]
                 r += 1
-        print(l)
         return l+1
             
         
