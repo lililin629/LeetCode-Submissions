@@ -8,6 +8,7 @@ class Solution:
         while r < len(s):
             d[s[r]] += 1
             
+            # invariant: every char in the window must not have duplicates
             while d[s[r]] > 1:
                 d[s[l]] -= 1
                 l += 1
