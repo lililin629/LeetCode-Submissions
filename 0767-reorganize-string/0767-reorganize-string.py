@@ -13,9 +13,7 @@ class Solution:
             ncount, nch = 0, ''
             if heap:
                 ncount, nch = heapq.heappop(heap)
-            # print(nch)
-            # print(ncount)
-            # print(ans[-1])
+           
             if ans[-1] == cur_ch or cur_ch == nch:
                 return ""
             ans += cur_ch
