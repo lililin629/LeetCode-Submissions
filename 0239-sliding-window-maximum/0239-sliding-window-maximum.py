@@ -1,16 +1,16 @@
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        # edge case
         if k == 1:
             return nums
-        l = 0
-        r = k
-        cur_max = max(nums[:k])
         
-        d = defaultdict(int)
-        for i in range(k):
-            d[nums[i]] += 1
-            
+        # 2 pointers
+        l = 0  #first ele of window
+        r = k  #1 ele to the rihgt of the last ele
+        cur_max = max(nums[:k])
+        d = Counter(nums[:k])
         ans = [cur_max]
+        
         while r < len(nums):
             d[nums[r]] += 1
             d[nums[l]] -= 1
