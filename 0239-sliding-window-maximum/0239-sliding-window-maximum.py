@@ -12,16 +12,20 @@ class Solution:
         ans = [cur_max]
         
         while r < len(nums):
+            # update d 
             d[nums[r]] += 1
             d[nums[l]] -= 1
             if d[nums[l]] == 0:
                 del d[nums[l]]
+            # update cur_max
             if nums[r] > cur_max:
                 cur_max = nums[r]
             else:
                 if cur_max not in d:
                     cur_max = max(d)
             ans.append(cur_max) 
+            
+            # move window to the right
             l += 1
             r += 1
         
