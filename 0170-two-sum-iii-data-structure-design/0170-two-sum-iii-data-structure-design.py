@@ -1,27 +1,22 @@
 class TwoSum:
 
     def __init__(self):
-        self.ls = []
+        self.d = defaultdict(int)
         
 
     def add(self, number: int) -> None:
-        self.ls.append(number)
+        self.d[number] += 1
         
 
     def find(self, value: int) -> bool:
-        self.ls.sort()
-        f = 0
-        e = len(self.ls) - 1
-        while f < e:
-            if self.ls[f] + self.ls[e] == value:
+        for i in self.d:
+            if value-i == i:
+                if self.d[i] > 1:
+                    return True
+                continue
+            if value-i in self.d:
                 return True
-            else:
-                if self.ls[f] + self.ls[e] > value:
-                    e -= 1
-                else:
-                    f += 1
         return False
-        
         
 
 
