@@ -13,8 +13,8 @@ class TwoSum:
             if value-i == i:
                 if self.d[i] > 1:
                     return True
-                continue
-            if value-i in self.d:
+                
+            elif value-i in self.d:
                 return True
         return False
         
