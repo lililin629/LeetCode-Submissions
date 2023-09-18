@@ -32,10 +32,11 @@ class Solution:
                 r -= 1
         
         if k <= r:
-            self.qs(start, r, new, k)
+            return self.qs(start, r, new, k)
         if k >= l:
-            self.qs(l, end, new, k)
+            return self.qs(l, end, new, k)
         return str(new[k])
+        
             
                 
         
