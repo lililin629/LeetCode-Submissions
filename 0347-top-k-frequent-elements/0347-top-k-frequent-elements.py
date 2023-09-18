@@ -26,6 +26,7 @@ class Solution:
                 new[r], new[l] = new[l], new[r]
                 l += 1
                 r -= 1
+        # r是左邊的終點，l是右邊的起點
         if k <= r:
             self.partition(start, r, new, k)
         if k >= l:
