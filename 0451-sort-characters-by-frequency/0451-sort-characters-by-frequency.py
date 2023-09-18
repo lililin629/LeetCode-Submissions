@@ -7,7 +7,6 @@ class Solution:
         self.qs(0, n-1, lst)
         ans = ''
         for (ct, ch) in lst[::-1]:
-            # for i in range(ct):
             ans += ch*ct
         return ans
     
