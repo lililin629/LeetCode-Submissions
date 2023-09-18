@@ -17,5 +17,5 @@ class Solution:
                 if 0 <= nx <= m and 0 <= ny <= n and (nx, ny) not in d:
                     d[(nx, ny)] = max(d[(curx, cury)], grid[nx][ny])
                     heapq.heappush(heap, (d[(nx, ny)], (nx, ny)))
-        return d[(m,n)]
+        # return d[(m,n)]
                     
