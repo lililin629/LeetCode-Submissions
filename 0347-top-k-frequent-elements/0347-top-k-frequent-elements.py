@@ -27,9 +27,9 @@ class Solution:
                 l += 1
                 r -= 1
         if k <= r:
-            return self.partition(start, r, new, k)
+            self.partition(start, r, new, k)
         if k >= l:
-            return self.partition(l, end, new, k)
+            self.partition(l, end, new, k)
         
                 
                 
