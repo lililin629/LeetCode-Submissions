@@ -7,11 +7,11 @@ class Solution:
         new = [(count, num) for num, count in d.items()]
         
         n = len(d)
-        self.partition(0, n-1, new)
+        self.partition(0, n-1, new, n-k)
         return [j for i, j in new[n-k:]]
 
-    def partition(self, start, end, new):
-        if start >= end:
+    def partition(self, start, end, new, k):
+        if start == end:
             return
         l, r = start ,end
         piv = new[(l+r)//2][0]
@@ -26,9 +26,10 @@ class Solution:
                 new[r], new[l] = new[l], new[r]
                 l += 1
                 r -= 1
-        self.partition(start, r, new)
-        
-        self.partition(l, end, new)
+        if k <= r:
+            return self.partition(start, r, new, k)
+        if k >= l:
+            return self.partition(l, end, new, k)
         
                 
                 
