@@ -1,32 +1,36 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        l = 0
-        r = 0 
-        d = {}
-        max_l = 1
-        max_freq = 0
-
-        while r < len(s):
-            if s[r] in d:
-                d[s[r]] += 1
-            if s[r] not in d:
-                d[s[r]] = 1
             
-            max_freq = max(max_freq, d[s[r]])
-            is_valid = ((r - l + 1 - max_freq) <= k) # 需要改 <= 可改
-
-            if not is_valid:
-                d[s[l]] -= 1
-                l += 1
-            
-            max_l = max(max_l, r - l + 1)
-            
-            r += 1
+        # binary search for length
+        start, end = 1, len(s)+1
+        while start+1 < end:
+            mid = start + (end-start)//2
+            if self.isValid(s, mid, k):
+                start = mid
+            else:
+                end = mid
+        return start
         
-        return max_l
-                
-
-
+    def isValid(self, s, length, k):
+        # sliding window
+        d = defaultdict(int)
+        max_ct = 0
+        start = 0
+        for end in range(len(s)):
+            d[s[end]] += 1
             
-
-       
+            if end + 1 - start > length:
+                d[s[start]] -= 1
+                start += 1
+            max_ct = max(max_ct, d[s[end]])
+            if length - max_ct <= k:
+                return True
+        return False
+        
+        
+        
+            
+                    
+                
+            
+        
