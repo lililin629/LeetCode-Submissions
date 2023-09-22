@@ -18,7 +18,6 @@ class Solution:
         start = 0
         for end in range(len(s)):
             d[s[end]] += 1
-            
             if end + 1 - start > length:
                 d[s[start]] -= 1
                 start += 1
