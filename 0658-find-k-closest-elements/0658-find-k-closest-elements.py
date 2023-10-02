@@ -6,13 +6,20 @@ class Solution:
         heapq.heapify(ele_h)
         for ele in arr:
             heapq.heappush(diff_h, (abs(ele-x), ele))
-        for _ in range(k):
-            dist, el = heapq.heappop(diff_h)
-            heapq.heappush(ele_h, el)
         ans = []
         for _ in range(k):
-            ans.append(heapq.heappop(ele_h))
+            dist, el = heapq.heappop(diff_h)
+            ans.append(el)
+        ans.sort()
         return ans
+            
+        # for _ in range(k):
+        #     dist, el = heapq.heappop(diff_h)
+        #     heapq.heappush(ele_h, el)
+        # ans = []
+        # for _ in range(k):
+        #     ans.append(heapq.heappop(ele_h))
+        # return ans
             
             
             
