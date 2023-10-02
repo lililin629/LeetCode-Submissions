@@ -12,6 +12,8 @@ class Solution:
     def helper(self, start, end):
         if start > end:
             return [None]
+        if start == end:
+            return [TreeNode(start)]
         ans = []
         for i in range(start, end+1):
             lefts = self.helper(start, i-1)
