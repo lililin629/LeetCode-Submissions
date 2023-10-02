@@ -8,7 +8,7 @@ class Solution:
     def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
         return self.helper(1, n)
     
-    @lru_cache
+    @cache
     def helper(self, start, end):
         if start > end:
             return [None]
