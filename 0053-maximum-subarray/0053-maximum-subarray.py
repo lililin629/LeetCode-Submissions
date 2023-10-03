@@ -15,11 +15,6 @@ class Solution:
             
             if d[r]-d[l] >= max_sum:
                 max_sum = d[r]-d[l]
-                # print(d)
-                # print(r)
-                # print(l)
-                # print(max_sum)
-                # print('---')
 
             if ps < 0:
                 l = r
