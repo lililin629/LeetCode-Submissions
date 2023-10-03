@@ -2,7 +2,7 @@ class Solution:
     def numTrees(self, n: int) -> int:
         return self.helper(1, n)
     
-    @cache
+    @lru_cache
     def helper(self, start, end):
         if start > end:
             return 1
