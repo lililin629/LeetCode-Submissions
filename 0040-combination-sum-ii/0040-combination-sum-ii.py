@@ -10,8 +10,8 @@ class Solution:
         if target == 0:
             combos.append(list(combo))
             return 
-        if target < 0:
-            return
+        # if target < 0:
+        #     return
         
         for i in range(idx, len(candidates)):
             if i > idx and candidates[i] == candidates[i-1]:
