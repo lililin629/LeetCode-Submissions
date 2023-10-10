@@ -6,42 +6,15 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def isValidBSTInRange(root, lower, upper):
-            if not root:
-                return True
-
-            if lower is not None and root.val <= lower:
-                return False
-            if upper is not None and root.val >= upper:
-                return False
-
-            left_valid = isValidBSTInRange(root.left, lower, root.val)
-            right_valid = isValidBSTInRange(root.right, root.val, upper)
-
-            return left_valid and right_valid
-
-        # Start with the full range for the root node
-        return isValidBSTInRange(root, None, None)
-#         if not root:
-#             return True
-#         print(self.isSmaller(root.left, root.val))
-#         print(self.isBigger(root.right, root.val))
-        
-#         return self.isSmaller(root.left, root.val) and self.isBigger(root.right, root.val) and self.isValidBST(root.left) and self.isValidBST(root.right)
+        return self.helper(root, float('-inf'), float('inf'))
     
-#     def isSmaller(self, rootS, B):
-#         if not rootS:
-#             return True
-#         if rootS.val >= B:
-#             return False
-#         return self.isSmaller(rootS.left, B) and self.isSmaller(rootS.right, B)
+    def helper(self, root, low, hi):
+        if not root:
+            return True
+        # if not root.left and not root.right:
+        #     return True
+        if root.val <= low or root.val >= hi:
+            return False
         
-#     def isBigger(self, rootB, S):
-#         if not rootB:
-#             return True
-#         if rootB.val <= S:
-#             return False
-#         return self.isBigger(rootB.left, S) and self.isBigger(rootB.right, S)
-        
-        
+        return self.helper(root.left, low, root.val) and self.helper(root.right, root.val, hi)
         
