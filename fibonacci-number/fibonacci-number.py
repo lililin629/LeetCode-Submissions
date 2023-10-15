@@ -16,12 +16,13 @@ class Solution:
             return cache[N]
 
         if N < 2:
-            cache[N] = N
+            res = N
         else:
-            cache[N] = self.recur_fib(N-1, cache) + self.recur_fib(N-2, cache)
+            res = self.recur_fib(N-1, cache) + self.recur_fib(N-2, cache)
 
         # put result in cache for later reference.
-        return cache[N]
+        cache[N] = res
+        return res
         
 
        
