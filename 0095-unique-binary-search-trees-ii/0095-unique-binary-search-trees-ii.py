@@ -25,6 +25,6 @@ class Solution:
             for l in lefts:
                 for r in rights:
                     ans.append(TreeNode(i, l, r))
-        cache[(start, end)] = ans
+                    cache[(start, end)] = ans
         return ans
         
