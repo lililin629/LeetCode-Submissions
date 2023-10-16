@@ -18,22 +18,22 @@ class Solution:
             if not node:
                 return
             
-            if node:
-                # left
-                helper(node.left)
-                # node 
-                if last:
-                    # link the previous node (last)
-                    # with the current one (node)
-                    last.right = node
-                    node.left = last
-                else:
-                    # keep the smallest node
-                    # to close DLL later on
-                    first = node        
-                last = node
-                # right
-                helper(node.right)
+            
+            # left
+            helper(node.left)
+            # node 
+            if last:
+                # link the previous node (last)
+                # with the current one (node)
+                last.right = node
+                node.left = last
+            else:
+                # keep the smallest node
+                # to close DLL later on
+                first = node        
+            last = node
+            # right
+            helper(node.right)
         
         if not root:
             return None
