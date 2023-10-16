@@ -8,40 +8,38 @@ class Node:
 """
 class Solution:
     def treeToDoublyList(self, root: 'Node') -> 'Node':
-        def helper(node):
+        if not root:
+            return None
+        
+        # the smallest (first) and the largest (last) nodes
+        self.first, self.last = None, None
+        self.helper(root)
+        # close DLL
+        self.last.right = self.first
+        self.first.left = self.last
+        return self.first
+    
+    def helper(self, node):
             """
             Performs standard inorder traversal:
             left -> node -> right
             and links all nodes into DLL
             """
-            nonlocal last, first
             if not node:
                 return
             
-            
             # left
-            helper(node.left)
+            self.helper(node.left)
             # node 
-            if last:
+            if self.last:
                 # link the previous node (last)
                 # with the current one (node)
-                last.right = node
-                node.left = last
+                self.last.right = node
+                node.left = self.last
             else:
                 # keep the smallest node
                 # to close DLL later on
-                first = node        
-            last = node
+                self.first = node        
+            self.last = node
             # right
-            helper(node.right)
-        
-        if not root:
-            return None
-        
-        # the smallest (first) and the largest (last) nodes
-        first, last = None, None
-        helper(root)
-        # close DLL
-        last.right = first
-        first.left = last
-        return first
+            self.helper(node.right)
