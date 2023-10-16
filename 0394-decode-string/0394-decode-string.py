@@ -13,7 +13,6 @@ class Solution:
                 while st and st[-1].isnumeric():
                     
                     num = st.pop() + num
-                print(num)
                 num1 = 0
                 for n in num:
                     num1 = num1*10 + int(n)
@@ -21,8 +20,6 @@ class Solution:
                 for _ in range(num1):
                     for c in decoded[::-1]:
                         st.append(c)
-                print(st)
-                    
             else:
                 # push into stack in order
                 st.append(ch)
