@@ -2,14 +2,16 @@ class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
             
         # binary search for length
-        start, end = 1, len(s)+1
-        while start+1 < end:
-            mid = start + (end-start)//2
+        lo, hi = 1, len(s)
+        while lo+1 < hi:
+            mid = (lo + hi)//2
             if self.isValid(s, mid, k):
-                start = mid
+                lo = mid
             else:
-                end = mid
-        return start
+                hi = mid
+        if self.isValid(s, hi, k):
+            return hi
+        return lo
         
     def isValid(self, s, length, k):
         # sliding window
