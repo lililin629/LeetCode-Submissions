@@ -4,7 +4,7 @@ class Twitter:
         self.d_friends = defaultdict(set)
         # {user:[follow1, follow2...]}
         self.d_posts = defaultdict(list)
-        # {user: [post1, post2,...]}
+        # {user: [(time1, post1), (time2, post2),...]}
         self.time = 0
         
 
