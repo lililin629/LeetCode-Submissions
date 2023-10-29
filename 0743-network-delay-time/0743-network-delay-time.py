@@ -15,8 +15,7 @@ class Solution:
                 new_w = cur_w + weight
                 if new_w < dist[node]:
                     dist[node] = new_w
-                    # heapq.heappush(pq, (new_w, node))
-                    pq.append((new_w, node))
+                    heapq.heappush(pq, (new_w, node))
         mx_time = max(dist)
         if mx_time == float('inf'):
             return -1
