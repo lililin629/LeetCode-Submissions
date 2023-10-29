@@ -15,15 +15,12 @@ class Solution:
             
             for dx, dy in dirs:
                 nx, ny = curx + dx, cury + dy
-                # print(nx)
-                # print(ny)
-                # within boubds
                 if 0 <= nx <= m and 0 <= ny <= n:
                     new_effort = max(cur_effort, abs(heights[curx][cury]-heights[nx][ny]))
                     if (nx, ny) not in d or new_effort < d[(nx, ny)]:
                         d[(nx, ny)] = new_effort
                         heapq.heappush(heap, (new_effort, nx, ny))
-                    # print(d)
+                    
       
                     
                 
