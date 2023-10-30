@@ -19,8 +19,6 @@ class Solution:
                     ans = s[l:r+1]
                 if s[l] in dt:
                     ds[s[l]] -= 1
-                    # if ds[s[l]] == 0:
-                    #     del ds[s[l]]
                 l += 1
        
         return ans
