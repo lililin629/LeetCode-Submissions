@@ -14,14 +14,17 @@ class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int: 
         n = len(cost)
         self.cost = cost
+        self.memo = defaultdict(int)
         return self.dfs(n)
     
-    @cache
+    
     def dfs(self, n):
         if n == 0 or n == 1:
             return 0
-        c1 = self.dfs(n-1) + self.cost[n-1]
-        c2 = self.dfs(n-2) + self.cost[n-2]
-        return min(c1, c2)
+        if n not in self.memo:
+            c1 = self.dfs(n-1) + self.cost[n-1]
+            c2 = self.dfs(n-2) + self.cost[n-2]
+            self.memo[n] = min(c1, c2)
+        return self.memo[n]
         
         
