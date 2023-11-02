@@ -6,15 +6,15 @@ class Solution:
             
         q = [(0, src, 0)]
         while q:
-            dist, node, steps = heapq.heappop(q)
+            pr, node, steps = heapq.heappop(q)
             if steps > stops[node] or steps > k + 1:
                 continue
             stops[node] = steps
             if node == dst:
-                return dist
+                return pr
             if node not in graph:
                 continue
             for neighbor, price in graph[node]:
-                heapq.heappush(q, (dist+price, neighbor, steps+1))
+                heapq.heappush(q, (pr+price, neighbor, steps+1))
         return -1
         
