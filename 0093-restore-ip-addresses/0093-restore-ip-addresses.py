@@ -25,10 +25,8 @@ class Solution:
             if int(st) > 255:
                 continue
             
-                
-            ip.append(s[idx:idx+i])
-            self.dfs(ans, ip, s, idx+i)
-            ip.pop()
+            self.dfs(ans, ip+[s[idx:idx+i]], s, idx+i)
+           
         
         
         
