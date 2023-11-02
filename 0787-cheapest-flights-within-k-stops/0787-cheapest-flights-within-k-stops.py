@@ -12,9 +12,9 @@ class Solution:
             stops[node] = steps
             if node == dst:
                 return pr
-            if node not in graph:
-                continue
-            for neighbor, price in graph[node]:
-                heapq.heappush(q, (pr+price, neighbor, steps+1))
+            if node in graph and steps <= k:
+                for neighbor, price in graph[node]:
+                    if steps + 1 < stops[neighbor]:
+                        heapq.heappush(q, (pr+price, neighbor, steps+1))
         return -1
         
