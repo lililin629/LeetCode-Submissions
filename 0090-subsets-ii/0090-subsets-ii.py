@@ -1,25 +1,21 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        ans_set = set()
-        ans = []
-
-        if not nums:
-            return [[]]
+        ans = set()
+        self.dfs(ans, nums, [], 0)
+        ret = []
+        for t in ans:
+            ret.append(list(t))
+        return ret
+            
         
-        for x in self.subsetsWithDup(nums[1:]):
-            #不選
-            t = tuple(sorted(x))
-            if t not in ans_set:
-                ans_set.add(t)
-                ans.append(x)
-                
-            #選nums[0]    
-            x1 = list(x)
-            x1.append(nums[0])
-            t1 = tuple(sorted(x1))
-            if t1 not in ans_set:
-                ans_set.add(t1)
-                ans.append(x1)
+    def dfs(self, ans, nums, cur, idx):
+        if idx == len(nums):
+            cur.sort()
+            t = tuple(cur)
+            ans.add(t)
+            return
         
-        return ans
-
+        self.dfs(ans, nums, cur+[nums[idx]], idx+1)
+        self.dfs(ans, nums, cur, idx+1)
+            
+        
