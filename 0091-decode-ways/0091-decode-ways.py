@@ -9,7 +9,6 @@ class Solution:
         dp[0] = 1
         
         for i in range(1, len(s)):
-            
             if self.valid(s[i]) and self.valid(s[i-1:i+1]):
                 dp[i] = dp[i-1] + dp[i-2]
             elif self.valid(s[i]): #79
@@ -18,9 +17,9 @@ class Solution:
                 dp[i] = dp[i-2]
             else:
                 dp[i] = 0
-        # print(dp)
-        
         return dp[n-1]
+    
+    
     def valid(self, s1):
         # invalid: > 26, 0, starts with 0
         if s1[0] == '0':
