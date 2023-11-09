@@ -1,45 +1,43 @@
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+        
+        pac = set()
+        atl = set()
         m = len(heights)
         n = len(heights[0])
-
-        pacific = [[None] * n for _ in range(m)]
-        atlantic = [[None] * n for _ in range(m)]
-
-        qp = deque()
-        qa = deque()
-        for i in range(m):
-            pacific[i][0] = True
-            qp.append((i, 0))
-            atlantic[i][n-1] = True
-            qa.append((i, n-1))
-
-        for i in range(n):
-            pacific[0][i] = True
-            qp.append((0, i))
-            atlantic[m-1][i] = True
-            qa.append((m-1, i))
         
-        self.bfs(qp, m, n, heights, pacific)
-        self.bfs(qa, m, n, heights, atlantic)
-
-        ans = []
         for i in range(m):
-            for j in range(n):
-                if pacific[i][j] and atlantic[i][j]:
-                    ans.append([i, j])
+            pac.add((i, 0))
+            atl.add((i, n-1))
+        for j in range(n):
+            pac.add((0, j))
+            atl.add((m-1, j))
+        
+        pq = deque(pac)
+        aq = deque(atl)
+        self.bfs(heights, pq, pac)
+        self.bfs(heights, aq, atl)
+        ans = []
+        for (x, y) in pac:
+            if (x, y) in atl:
+                ans.append([x, y])
         return ans
-
     
-    def bfs(self, q, m, n, heights, map):
-        dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+    def bfs(self, heights, q, reached):
+        dirs = [(1, 0),(0, 1),(-1, 0),(0, -1)]
+        m = len(heights)
+        n = len(heights[0])
         while q:
-            cx, cy = q.popleft()
+            x, y = q.popleft()
             for dx, dy in dirs:
-                nx, ny = cx + dx, cy + dy
-                if nx < m and nx >= 0 and ny < n and ny >= 0:
-                    if heights[nx][ny] >= heights[cx][cy]:
-                        if not map[nx][ny]:
-                            q.append((nx, ny))
-                            map[nx][ny] = True
+                nx, ny = x+dx, y+dy
+                if 0 <= nx < m and 0 <= ny < n and (nx, ny) not in reached:
+                    if heights[nx][ny] >= heights[x][y]:
+                        reached.add((nx, ny))
+                        q.append((nx, ny))
+       
+      
+                
+        
+            
         
