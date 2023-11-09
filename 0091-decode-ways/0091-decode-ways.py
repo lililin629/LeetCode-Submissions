@@ -7,17 +7,10 @@ class Solution:
             return 0
         dp[-1] = 1
         dp[0] = 1
-        # if n > 1:
-        #     if self.valid(s[1]) and self.valid(s[:2]):
-        #         dp[1] = 2
-        #     elif self.valid(s[1]) or self.valid(s[:2]):
-        #         dp[1] = 1
-        #     else:
-        #         dp[1] = 0
         
         for i in range(1, len(s)):
             
-            if self.valid(s[i]) and self.valid(s[i-1]) and self.valid(s[i-1:i+1]):
+            if self.valid(s[i]) and self.valid(s[i-1:i+1]):
                 dp[i] = dp[i-1] + dp[i-2]
             elif self.valid(s[i]) and self.valid(s[i-1]): #79
                 dp[i] = dp[i-1]
