@@ -12,9 +12,9 @@ class Solution:
             
             if self.valid(s[i]) and self.valid(s[i-1:i+1]):
                 dp[i] = dp[i-1] + dp[i-2]
-            elif self.valid(s[i]) and self.valid(s[i-1]): #79
+            elif self.valid(s[i]): #79
                 dp[i] = dp[i-1]
-            elif self.valid(s[i-1]) and self.valid(s[i-1:i+1]): #10
+            elif self.valid(s[i-1:i+1]): #10
                 dp[i] = dp[i-2]
             elif self.valid(s[i]) and not self.valid(s[i-1]) and not self.valid(s[i-1:i+1]): #01
                 dp[i] = dp[i-1]
