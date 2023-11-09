@@ -16,8 +16,8 @@ class Solution:
                 dp[i] = dp[i-1]
             elif self.valid(s[i-1:i+1]): #10
                 dp[i] = dp[i-2]
-            elif self.valid(s[i]) and not self.valid(s[i-1]) and not self.valid(s[i-1:i+1]): #01
-                dp[i] = dp[i-1]
+            # elif self.valid(s[i]) and not self.valid(s[i-1]) and not self.valid(s[i-1:i+1]): #01
+            #     dp[i] = dp[i-1]
             else:
                 dp[i] = 0
         # print(dp)
