@@ -16,6 +16,7 @@ class Solution:
                 if s[i] == s[j] and memo[(i + 1, j - 1)]:
                     memo[(i, j)] = True
                     ans += 1
+                
         return ans
                 
                     
