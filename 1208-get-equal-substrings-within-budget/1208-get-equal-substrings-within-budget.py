@@ -6,7 +6,6 @@ class Solution:
         for i in range(n):
             dist[i] = abs(ord(s[i]) - ord(t[i]))
         
-        print(dist)
         l = r = 0
         dif = 0
         mx = 0
