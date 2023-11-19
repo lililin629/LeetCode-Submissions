@@ -9,49 +9,46 @@ class Solution:
         Do not return anything, modify head in-place instead.
         """
         # find mid point
-        
-        slow = head
         fast = head
+        slow = head
+       
+        while fast and fast.next and fast.next.next:
+            fast = fast.next.next
+            slow = slow.next
+        mid = slow.next
+        slow.next = None
+        # reverse second half
+        rev = self.reverseList(mid)
+        # join 2 lists
         
-        if not head:
+        cur1 = head
+        cur2 = rev
+        
+        while cur1 and cur2:
+            # Save next nodes
+            temp1 = cur1.next
+            temp2 = cur2.next
+
+            # Link cur1 to cur2
+            cur1.next = cur2
+
+            # Move cur1 to its original next
+            cur1 = temp1
+
+            # Link cur2 to the next of cur1
+            cur2.next = cur1
+
+            # Move cur2 to its original next
+            cur2 = temp2
+
+            
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head or not head.next:
             return head
         
-        while fast and fast.next:
-            slow = slow.next
-            fast = fast.next.next
-        mid = slow
-
-        # reverse the second half
-        # cur = new_tail
-        # tmp = None
-        # while cur.next and cur.next.next:
-        #     prev = cur
-        #     cur = cur.next
-        #     tmp = cur.next
-        #     cur.next = prev
-        # new_tail.next = None
-        # second_head = tmp
-        prev, cur = None, mid
-        while cur:
-            tmp = cur.next
-            cur.next = prev
-            prev = cur
-            cur = tmp
-        second_head = prev
-            
-        # link nodes from each half alternatingly
-        cur = head
-        cur2 = second_head
-        while cur2.next:
-            tmp = cur.next
-            cur.next = cur2
-            cur = tmp
-            
-            tmp = cur2.next
-            cur2.next = cur
-            cur2 = tmp
-        return head
+        new_tail = head.next
+        new_head = self.reverseList(head.next)
+        new_tail.next = head
+        head.next = None
         
-            
-        
-        
+        return new_head
