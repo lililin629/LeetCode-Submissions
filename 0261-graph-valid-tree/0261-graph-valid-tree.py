@@ -1,31 +1,23 @@
 class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
-        self.n = n
-        self.d = defaultdict(list)
-        # build graph
-        for [u, v] in edges:
-            self.d[u].append(v)
-            self.d[v].append(u)
+        if len(edges) != n - 1: return False
+        g = defaultdict(list)
+        for [p,c] in edges:
+            g[p].append(c)
+            g[c].append(p)
             
+        q = deque([0])
+        visited = set([0])
         
-        # traverse
-        visited = set()
-        if not self.dfs(0, -1, visited):
-            return False
+        while q:
+            cur = q.popleft()
+            for m in g[cur]:
+                if m in visited:
+                    continue
+                visited.add(m)
+                q.append(m)
         
-        return (len(visited) == n)
-        
-        
-    def dfs(self, start, parent, visited):
-        
-        if start in visited:
-            return False
-        visited.add(start)
-        
-        
-        for nex in self.d[start]:
-            if nex != parent and not self.dfs(nex, start, visited):
-                return False
-        return True
+        return len(visited) == n
+                
         
         
