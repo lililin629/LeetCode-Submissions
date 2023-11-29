@@ -4,7 +4,7 @@ class Solution:
         
         while n:
             ans += n % 2
-            n = n >> 1
+            n = n//2
         return ans
         
        
