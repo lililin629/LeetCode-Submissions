@@ -1,17 +1,21 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        lst = [nums[0]]
+        # nums = [10,9,2,5,3,7,101,18]
+        # (0,3), (0,3), (1,5)
+        # {0:(1, 10), 1:(1, 9), 2:(1,2), 3:(2, 5) ...}
         
-        for num in nums[1:]:
-            if num > lst[-1]:
-                lst.append(num)
-            else:
-                i = 0
-                while lst[i] < num:
-                    i += 1
-                lst[i] = num
-        return len(lst)
-                    
+        d = [1]*len(nums)
+        
+        
+        for i in range(1, len(nums)):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    d[i] = max(d[j]+1, d[i])
+                
+        print(d)
+        return max(d)
+            
+             
                     
             
         
