@@ -1,20 +1,29 @@
-class Solution(object):
-    def merge(self, nums1, m, nums2, n):
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         """
-        :type nums1: List[int]
-        :type m: int
-        :type nums2: List[int]
-        :type n: int
-        :rtype: None Do not return anything, modify nums1 in-place instead.
+        Do not return anything, modify nums1 in-place instead.
         """
-        my_h = []
-        for n in nums1[:m]:
-            heapq.heappush(my_h, n)
-        
-        for n in nums2:
-            heapq.heappush(my_h, n)
-        
-        i = 0
-        while len(my_h):
-            nums1[i] = heapq.heappop(my_h)
-            i += 1
+        ans = []
+        l = r = 0
+        if n == 0:
+            return
+        elif m == 0:
+            nums1[:] = nums2[:]
+        else:
+            while l < m and r < n:
+                if nums1[l] <= nums2[r]:
+                    ans.append(nums1[l])
+                    l += 1
+                else:
+                    ans.append(nums2[r])
+                    r += 1
+            if l < m:
+                ans.extend(nums1[l:])
+            if r < n:
+                ans.extend(nums2[r:])
+                
+            for i in range(m+n):
+                nums1[i] = ans[i]
+            
+            
+            
