@@ -16,21 +16,16 @@ class Codec:
         if not root:
             return ''
         q = deque([root])
-        s = [str(root.val)]
+        s = []
         while q:
             node = q.popleft()
-            if node.left:
+            if node:
+                s.append(str(node.val))
                 q.append(node.left)
-                s.append(str(node.left.val))
-            else:
-                s.append('n')
-            if node.right:
                 q.append(node.right)
-                s.append(str(node.right.val))
             else:
                 s.append('n')
         st = ','.join(s)
-        print(st)
         return st
             
 
