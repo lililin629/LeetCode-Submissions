@@ -40,9 +40,10 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        lst = data.split(',')
-        if not lst or not lst[0]:
+        if not data:
             return None
+        lst = data.split(',')
+        
         
         num = lst[0]
         root = TreeNode(int(num))
