@@ -39,9 +39,7 @@ class Codec:
             return None
         lst = data.split(',')
         
-        
-        num = lst[0]
-        root = TreeNode(int(num))
+        root = TreeNode(int(lst[0]))
         nq = deque([root])
        
         
@@ -58,8 +56,6 @@ class Codec:
                 lnode = TreeNode(int(l_val))
                 nq.append(lnode)
                 node.left = lnode
-            else:
-                node.left = None
             
             if q:
                 r_val = q.popleft()
@@ -68,8 +64,7 @@ class Codec:
                 rnode = TreeNode(int(r_val))
                 nq.append(rnode)
                 node.right = rnode
-            else:
-                node.right = None
+        
         return root
             
         
