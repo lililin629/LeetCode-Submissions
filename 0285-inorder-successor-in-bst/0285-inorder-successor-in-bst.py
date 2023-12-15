@@ -7,20 +7,25 @@
 
 class Solution:
     def inorderSuccessor(self, root: TreeNode, p: TreeNode) -> Optional[TreeNode]:
-    
-        suc = None 
-        # left root right
-        while root:
-            if root.val > p.val:
-                suc = root
-                root = root.left
-            else:
-                root = root.right
-        return suc
-
-
-       
+        ans = []
         
+        self.helper(root, ans)
+        
+        for i in range(len(ans)):
+            if ans[i] == p:
+                if i == len(ans)-1:
+                    return None
+                else:
+                    return ans[i+1]
                 
+                
+    
+    def helper(self, root, ans):
+        if not root:
+            return
+        self.helper(root.left, ans)
+        ans.append(root)
+        
+        self.helper(root.right, ans)
         
         
