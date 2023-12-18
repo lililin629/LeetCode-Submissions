@@ -1,12 +1,10 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        if len(nums) == 1:
-            return [nums]
-        else:
-            nums.sort()
-            ans = []
-            self.perm(ans, nums, set(), [])
-            return ans
+        
+        nums.sort()
+        ans = []
+        self.perm(ans, nums, set(), [])
+        return ans
     
     def perm(self, ans, nums, visited, cur):
         if len(cur) == len(nums):
