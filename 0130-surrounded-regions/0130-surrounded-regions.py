@@ -3,50 +3,50 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
-
-       
+        # find the "o" on the borders
+        # find all "o" connected to border "o"
+        # add above to a set
+        # iterate through the board, all "o" not in set should be flipped
+        
+        q = deque()
+        visited = set()
+        noFlips = set()
+        
         m = len(board)
         n = len(board[0])
-        start = []
-        # find the 0's on the border
-        for i in [0, m-1]:
-            for j in range(n):
-                if board[i][j] == "O":
-                    start.append((i, j))
         
-        for i in range(1, m-1):
-            for j in [0, n-1]:
-                if board[i][j] == 'O':
-                    start.append((i, j))
-                    
-        # change all the islands connected to borderr to '1'
-        self.bfs(start, m, n, board) 
-        
-        # change remaining 'O' to 'X' and change '1 back to 'O
         for i in range(m):
             for j in range(n):
-                if board[i][j] == 'O':
-                    board[i][j] = 'X'
-                if board[i][j] == '1':
-                    board[i][j] = 'O'
-
-
-                    
-    def bfs(self, start, m, n, board):
-        q = deque(start)
-        visited = set()
+                if i == 0 or i == m-1 or j == 0 or j == n-1:
+                    if board[i][j] == "O" and (i, j) not in visited:
+                        q.append((i, j))
+                        visited.add((i, j))
+                        noFlips.add((i, j))
+                        
+        
         dirs = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        
         while q:
-            x, y = q.popleft()
-            visited.add((x, y))
-            board[x][y] = '1'
+            cx, cy = q.popleft()
             for dx, dy in dirs:
-                nx, ny = x + dx, y + dy
-                if nx >= 0 and ny >= 0 and nx < m and ny < n and (nx, ny) not in visited:
-                    if board[nx][ny] == 'O':
+                nx, ny = cx + dx, cy + dy
+                if 0 <= nx < m and 0 <= ny < n and (nx, ny) not in visited:
+                    if board[nx][ny] == "O":
+                        noFlips.add((nx, ny))
                         q.append((nx, ny))
-
-
-
-
-
+                        visited.add((nx, ny))
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == "O" and (i, j) not in noFlips:
+                    board[i][j] = 'X'
+                
+                    
+        
+        
+                        
+                        
+                
+                    
+                    
+            
+        
