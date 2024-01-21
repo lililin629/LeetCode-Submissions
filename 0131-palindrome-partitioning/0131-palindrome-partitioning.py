@@ -5,7 +5,6 @@ class Solution:
         for i in range(len(s)):
             d[(i, i)] = 1
             
-        
         for i in range(1, len(s)):
             if s[i] == s[i-1]:
                 d[(i-1, i)] = 1
