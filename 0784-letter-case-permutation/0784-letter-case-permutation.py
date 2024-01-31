@@ -9,8 +9,6 @@ class Solution:
             ans.append(cur)
         if start >= len(s):
             return
-        if len(cur) - start < 0:
-            return
         
         if s[start].isalpha():    
             self.helper(start+1, s, ans, cur+s[start].lower())
