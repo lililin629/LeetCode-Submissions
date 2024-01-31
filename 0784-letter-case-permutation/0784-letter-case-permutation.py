@@ -9,11 +9,14 @@ class Solution:
             ans.add(cur)
         if start >= len(s):
             return
+        if len(cur) - start < 0:
+            return
             
-        
         self.helper(start+1, s, ans, cur+s[start].lower())
         self.helper(start+1, s, ans, cur+s[start].upper())
             
+            
+
             
                 
         
