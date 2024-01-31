@@ -7,10 +7,12 @@ class Solution:
     def helper(self, start, s, ans, cur):
         if len(cur) == len(s):
             ans.add(cur)
+        if start >= len(s):
+            return
             
-        for i in range(start, len(s)):
-            self.helper(i+1, s, ans, cur+s[i].lower())
-            self.helper(i+1, s, ans, cur+s[i].upper())
+        
+        self.helper(start+1, s, ans, cur+s[start].lower())
+        self.helper(start+1, s, ans, cur+s[start].upper())
             
             
                 
