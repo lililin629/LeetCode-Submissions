@@ -1,21 +1,28 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        
-        ps = []
-        self.dfs('', n, ps, 0, 0)
-        return ps
+        ans = []
+        self.helper(0, 0, n, '', ans)
+        return ans
     
-    def dfs(self, p, n, ps, ocount, ccount):
-        if len(p) == 2*n:
-            ps.append(p)
+    def helper(self, start, left, n, cur, ans):
+        if len(cur) == 2*n and left==0:
+            ans.append(cur)
+        if start > 2*n:
             return
-        if ocount < n:
-            self.dfs(p+'(', n, ps, ocount+1, ccount)
-        if ccount< ocount:
-            self.dfs(p+')', n, ps, ocount, ccount+1)
-    
-    
-                
+        if left > 0:
+            # +left
+            self.helper(start+1, left+1, n, cur+'(', ans)
+            # +right
+            self.helper(start+1, left-1, n, cur+')', ans)
+        
+        else:
+            self.helper(start+1, left+1, n, cur+'(', ans)
+            
+            
+      
+       
+            
+        
         
         
         
