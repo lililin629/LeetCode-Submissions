@@ -1,26 +1,25 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
-        
         nums.sort()
+        cur = tuple()
+        used = set()
+        seen = set()
         ans = []
-        self.perm(ans, nums, set(), [])
+        self.helper(0, nums, cur, used, seen, ans)
         return ans
     
-    def perm(self, ans, nums, visited, cur):
+    def helper(self, ind, nums, cur, used, seen, ans):
         if len(cur) == len(nums):
-            ans.append(cur)
-            return
+            if cur not in seen:
+                seen.add(cur)
+                ans.append(list(cur))
         
         for i in range(len(nums)):
-            if i in visited:
-                continue
-            if i > 0 and nums[i] == nums[i-1] and (i-1) not in visited:
-                continue
+            if i not in used:
+                used.add(i)
+                self.helper(ind+1, nums, cur+(nums[i],), used, seen, ans)
+                used.remove(i)
                 
-            
-            visited.add(i)
-            self.perm(ans, nums, visited, cur+[nums[i]])
-            visited.remove(i)
-            
+      
         
         
