@@ -2,7 +2,8 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         ans = []
         used = set()
-        self.dfs(nums, used, [], ans)
+        cur = []
+        self.dfs(nums, used, cur, ans)
         return ans
     
     def dfs(self, nums, used, cur, ans):
