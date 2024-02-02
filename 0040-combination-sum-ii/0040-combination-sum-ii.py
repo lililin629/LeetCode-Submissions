@@ -1,26 +1,24 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+        ans = []
         candidates.sort()
-        combos = []
-        self.helper(candidates, target, 0, [], combos)
-        
-        return combos
+        self.helper(0, candidates, target, [], ans)
+        return ans
     
-    def helper(self, candidates, target, idx, combo, combos):
-        if target == 0:
-            combos.append(list(combo))
-            return 
-        # if target < 0:
-        #     return
+    def helper(self, ind, can, target, cur, ans):
+        if sum(cur) == target:
+            ans.append(list(cur))
+            return
+        if sum(cur) > target:
+            return
         
-        for i in range(idx, len(candidates)):
-            if i > idx and candidates[i] == candidates[i-1]:
+        for i in range(ind, len(can)):
+            if i != ind and can[i] == can[i-1]:
                 continue
-            if candidates[i] > target:
-                break
-                
-            combo.append(candidates[i])
-            self.helper(candidates, target-candidates[i], i+1, combo, combos)
-            combo.pop()
+            cur.append(can[i])
+            self.helper(i+1, can, target, cur, ans)
+            cur.pop()
+        
+       
         
         
