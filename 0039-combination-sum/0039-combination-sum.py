@@ -1,24 +1,20 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        ans = set()
+        ans = []
+        self.helper(0, candidates, target, [], ans)
+        return ans
         
-        self.dfs(ans, 0, [], target, candidates)
-      
-        ret = []
-        for t in ans:
-            ret.append(list(t))
-        return ret
-    
-    def dfs(self, ans, idx, cur, remain, candidates):
-        if remain == 0:
+    def helper(self, ind, candidates, target, cur, ans):
+        if sum(cur) == target:
+            ans.append(list(cur))
+            return
+        
+        if sum(cur) > target:
+            return
+       
+        for i in range(ind, len(candidates)):
+            self.helper(i, candidates, target, cur+[candidates[i]], ans)
             
-            cur.sort()
-            t = tuple(cur)
-            ans.add(t)
-            return
-        if remain < 0:
-            return
-        for i in range(idx, len(candidates)):
-            self.dfs(ans, i, cur+[candidates[i]], remain-candidates[i], candidates)
-        
+           
+       
         
