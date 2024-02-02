@@ -8,7 +8,6 @@ class Solution:
     def dfs(self, nums, used, cur, ans):
         if len(cur) == len(nums):
             ans.append(list(cur))
-            return
         
         for i in range(len(nums)):
             if nums[i] not in used:
