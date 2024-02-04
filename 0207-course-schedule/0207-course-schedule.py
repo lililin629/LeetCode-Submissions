@@ -1,28 +1,34 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        # topological: 可以修就修
+        if not prerequisites:
+            return True
+        d1 = defaultdict(int)
+        d2 = defaultdict(list)
         
-        ind = [0]*numCourses
-        d = defaultdict(list)
+        for [c, pr] in prerequisites:
+            d1[c] += 1
+            d2[pr].append(c)
         
-        for c, p in prerequisites:
-            d[p].append(c)
-            ind[c] += 1
+        q = deque()
+        taken = set()
         
-        q = deque([i for i in range(numCourses) if ind[i] == 0])
-        sched = []
+        for c in range(numCourses):
+            if c not in d1:
+                q.append(c)
+                taken.add(c)
         
         while q:
-            c1 = q.popleft()
-            sched.append(c1)
-            for c2 in d[c1]:
-                ind[c2] -= 1
-                if ind[c2] == 0:
-                    q.append(c2)
+            cur_c = q.popleft()
         
-        if len(sched) == numCourses:
-            return True
+            for next_c in d2[cur_c]:
+                d1[next_c] -= 1
+                if d1[next_c] == 0 and next_c not in taken:
+                    q.append(next_c)
+                    taken.add(next_c)
+
+                    if len(taken) == numCourses:
+                        return True
         return False
             
             
-        
+                
