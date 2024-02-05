@@ -11,13 +11,11 @@ class Solution:
         
         q = deque()
         num_taken = 0
-        # taken = set()
-        
+      
         for c in range(numCourses):
             if c not in d1:
                 q.append(c)
-                # taken.add(c)
-        
+               
         while q:
             cur_c = q.popleft()
             num_taken += 1
@@ -28,7 +26,6 @@ class Solution:
                 d1[next_c] -= 1
                 if d1[next_c] == 0:
                     q.append(next_c)
-
                 
         return False
             
