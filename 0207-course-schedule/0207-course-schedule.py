@@ -10,24 +10,26 @@ class Solution:
             d2[pr].append(c)
         
         q = deque()
-        taken = set()
+        num_taken = 0
+        # taken = set()
         
         for c in range(numCourses):
             if c not in d1:
                 q.append(c)
-                taken.add(c)
+                # taken.add(c)
         
         while q:
             cur_c = q.popleft()
+            num_taken += 1
+            if num_taken == numCourses:
+                return True
         
             for next_c in d2[cur_c]:
                 d1[next_c] -= 1
-                if d1[next_c] == 0 and next_c not in taken:
+                if d1[next_c] == 0:
                     q.append(next_c)
-                    taken.add(next_c)
 
-                    if len(taken) == numCourses:
-                        return True
+                
         return False
             
             
