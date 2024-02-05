@@ -8,28 +8,29 @@ class Solution:
     def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root:
             return []
-        dic = {} #{-1: [9], 0:[3, 15],...}
-        q = deque([(root, 0)])
+        ans = defaultdict(list)
+        nodes = []
+        q = deque()
+        q.append((root, 0))
         
         while q:
-            cur, col = q.popleft()
-            if col not in dic:
-                dic[col] = [cur.val]
-            else:
-                dic[col].append(cur.val)
-                
-            if cur.left:
-                q.append((cur.left, col-1))
-            if cur.right:
-                q.append((cur.right, col+1))
-        ans = []    
-        dic = dict(sorted(dic.items()))
-        for key in dic:
-            ans.append(dic[key])
-        return ans
+            node, x_pos = q.popleft()
+            ans[x_pos].append(node.val)
             
+            if node.left:
+                q.append((node.left, x_pos-1))
                 
-                
-                
+            if node.right:
+                q.append((node.right, x_pos+1))
         
+        ans = dict(sorted(ans.items()))
+        res = []
+        for k in ans:
+            res.append(ans[k])
+        return res
+            
+        
+        
+            
+            
         
