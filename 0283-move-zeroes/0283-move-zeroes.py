@@ -5,9 +5,9 @@ class Solution:
         """
         if len(nums) == 1:
             return
-        d = Counter(nums)
-        if 0 not in d:
-            return
+#         d = Counter(nums)
+#         if 0 not in d:
+#             return
         
         # [1,3,12,0,0]
         l = 0
