@@ -12,22 +12,22 @@ class Solution:
         # lst = [(start, end, c)]
         lst = []
         for c in d:
-            lst.append((d[c][0], d[c][1], c))
+            lst.append((d[c][0], d[c][1]))
         lst.sort(reverse= True)
         st = []
         
         ans = []
        
-        start, end, c = lst.pop()
-        st.append((start, end, c))
+        start, end = lst.pop()
+        st.append((start, end))
         while lst:
-            ns, ne, nc = lst.pop()
+            ns, ne = lst.pop()
             if ns > st[-1][1]:
                 ans.append(ns-st[0][0])
                 st = []
-                st.append((ns, ne, nc))
+                st.append((ns, ne))
             elif ne > st[-1][1]:
-                st.append((ns,ne,nc))
+                st.append((ns,ne))
         ans.append(st[-1][1]-st[0][0] + 1)
         return ans
                 
