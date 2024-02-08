@@ -11,7 +11,7 @@ class Solution:
         for i, num in enumerate(nums):
             ps = (ps+num)%p
             d[ps] = i
-            needed = (ps - target) % p
+            needed = (ps-target)%p
             if needed in d:
                 min_l = min(min_l, i - d[needed])
         if min_l == len(nums):
