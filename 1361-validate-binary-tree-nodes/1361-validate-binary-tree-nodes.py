@@ -6,11 +6,13 @@ class Solution:
         visited = set()
         
         q = deque()
+        ls = set(leftChild)
+        rs = set(rightChild)
         for i in range(n):
-            if i not in leftChild and i not in rightChild:
+            if i not in ls and i not in rs:
                 q.append(i)
                 visited.add(i)
-        if len(q) > 1:
+        if len(q) != 1:
             return False
         
         while q:
