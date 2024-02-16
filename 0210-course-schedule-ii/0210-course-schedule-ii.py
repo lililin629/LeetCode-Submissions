@@ -1,27 +1,37 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
-        in_degrees = [0]*numCourses
-        d = defaultdict(list)
-        ans = []
-
-        for target, pre in prerequisites: 
-            d[pre].append(target)
-            in_degrees[target] += 1
+        g1 = defaultdict(int)
+        g2 = defaultdict(list)
+        
+        for i in range(numCourses):
+            g1[i] = 0
+    
+        for [c, p] in prerequisites:
+            g1[c] += 1
+            g2[p].append(c)
         
         q = deque()
-        for i in range(numCourses):
-            if in_degrees[i] == 0:
-                q.append(i)
-        
+        taken = set()
+        ans = []
+        for c in g1:
+            if g1[c] == 0:
+                q.append(c)
+                taken.add(c)
+        # print(g1)
+        # print(g2)
+        # print(q)
         while q:
-            c = q.popleft()
-            ans.append(c)
-            for t in d[c]:
-                in_degrees[t] -= 1
-                if in_degrees[t] == 0:
-                    q.append(t)
+            cur = q.popleft()
+            ans.append(cur)
+            for nx in g2[cur]:
+                g1[nx] -= 1
+                if g1[nx] == 0 and nx not in taken:
+                    q.append(nx)
+                    taken.add(nx)
         if len(ans) < numCourses:
             return []
         return ans
-        
+                    
+                
+            
         
