@@ -3,36 +3,41 @@ class Solution:
         """
         Do not return anything, modify rooms in-place instead.
         """
+        # BFS from gates
         m = len(rooms)
         n = len(rooms[0])
-        # find all gates
-        gates = []
+        
+        starts = []
         for i in range(m):
             for j in range(n):
                 if rooms[i][j] == 0:
-                    gates.append((i, j))
-                    
-        # bfs from gates
-        q = deque(gates)
-        dirs = [(1, 0),(-1, 0),(0, 1),(0, -1)]
-        steps = 0
-        while q:
-            l = len(q)
-            steps += 1
-            for _ in range(l):
-                x, y = q.popleft()
-                for dx, dy in dirs:
-                    nx, ny = x + dx, y + dy
-                    if self.valid(nx, ny, m, n, rooms):  # not wall, in boundaries
-                        rooms[nx][ny] = min(steps, rooms[nx][ny])
-                        q.append((nx, ny))
+                    starts.append((i, j))
+        print(starts)
+        dirs = [(1, 0), (-1, 0), (0, 1), (0, -1)]
         
-    def valid(self, x, y, m, n, rooms):
-        if x >= 0 and y >= 0 and x < m and y < n:
-            if rooms[x][y] == 2147483647:
-                return True
-        return False
-
+        for i, j in starts:
+            q = deque()
+            visited = set()
+            q.append((i, j))
+            visited.add((i, j))
+            dist = 0
             
+            while q:
+                l = len(q)
+                dist += 1
+                for _ in range(l):
+                    ci, cj = q.popleft()
+                    for dx, dy in dirs:
+                        nx, ny = ci + dx, cj + dy
+                        if 0 <= nx < m and 0 <= ny < n and (nx, ny) not in visited:
+                            if rooms[nx][ny] > dist:
+                                rooms[nx][ny] = dist
+                                q.append((nx, ny))
+                                visited.add((nx, ny))
+        
+                        
+                        
+                        
             
+                    
         
